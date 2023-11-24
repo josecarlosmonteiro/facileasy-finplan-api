@@ -1,16 +1,23 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import router from './router';
 
 dotenv.config();
 
 const app = express();
 const PORT: string = process.env.PORT!;
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 // middleware para acompanhar logs de requisições
 app.use('/api', (req, res, next) => {
   console.log(`[${req.method}] ${req.path}`);
   next();
 });
+
+// definir router da aplicação
+app.use('/api', router);
 
 app.get('/', (req, res) => res.json({ message: 'Server running!' }));
 app.listen(PORT, () => console.log(`Server running in http://localhost:${PORT}`));
