@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import { UserModel } from "../../models";
+import { CreateUserDTO } from "./user.dto";
 
 export async function create(req: Request, res: Response) {
   try {
-    const user = req.body;
-    const data = await UserModel.create(user);
+    const { username, email, password }: CreateUserDTO = req.body;
+    const data = await UserModel.create({ username, email, password });
 
     return res.json({ content: data }).status(201);
   } catch (error: any) {
@@ -15,7 +16,7 @@ export async function create(req: Request, res: Response) {
 export async function remove(req: Request, res: Response) {
   try {
     const { id } = req.params;
-    const user = await UserModel.findOne({ where: { id } });
+    const user = await UserModel.findOne({ where: { id: Number(id) } });
 
     await user?.destroy();
 
