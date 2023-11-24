@@ -1,7 +1,10 @@
 import express from 'express';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
-const PORT: number = 4000;
+const PORT: string = process.env.PORT!;
 
 // middleware para acompanhar logs de requisições
 app.use('/api', (req, res, next) => {
