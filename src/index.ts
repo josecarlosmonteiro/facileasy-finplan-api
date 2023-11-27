@@ -2,8 +2,10 @@ import express from 'express';
 import dotenv from 'dotenv';
 import router from './router';
 import { loggingHttpRequests } from './middlewares';
+import { syncDatabase } from './models';
 
 dotenv.config();
+syncDatabase();
 
 const app = express();
 const PORT: string = process.env.PORT!;

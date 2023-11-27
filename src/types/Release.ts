@@ -3,7 +3,4 @@ export interface Release {
   title: string;
   value: number;
   type: "in" | "out";
-  idTransferType: number;
-  idCategories: number[];
-  idUser: number;
 }
