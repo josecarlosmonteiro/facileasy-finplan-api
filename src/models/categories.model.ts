@@ -2,20 +2,15 @@ import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../database/connectDB';
 import { Category } from '../types/Category';
 
-class CategoriesModel extends Model<Category> implements Category {
-  public id!: number;
+class CategoriesModel extends Model<Omit<Category, 'id'>> implements Omit<Category, 'id'> {
+  // public id!: number;
   public name!: string;
   public type!: 'in' | 'out';
 }
 
-const { INTEGER, STRING, ENUM } = DataTypes;
+const { STRING, ENUM } = DataTypes;
 
 CategoriesModel.init({
-  id: {
-    type: INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
   name: {
     type: STRING,
     allowNull: false,

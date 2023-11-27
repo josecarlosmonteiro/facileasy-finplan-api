@@ -1,22 +1,15 @@
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../database/connectDB';
 import { User } from '../types/User';
-
-class UsersModel extends Model<User> implements User {
-  public id!: number;
+class UsersModel extends Model<Omit<User, 'id'>> implements Omit<User, 'id'> {
   public username?: string | undefined;
   public email!: string;
   public password!: string;
 };
 
-const { STRING, INTEGER } = DataTypes;
+const { STRING } = DataTypes;
 
 UsersModel.init({
-  id: {
-    type: INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
   username: {
     type: STRING,
   },

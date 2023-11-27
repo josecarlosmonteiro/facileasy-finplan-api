@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { UsersModel } from "../../models";
-import { User } from "../../types/User";
+import { UsersModel } from "../../../models";
+import { User } from "../../../types/User";
 
 export async function findOne(req: Request, res: Response) {
   try {

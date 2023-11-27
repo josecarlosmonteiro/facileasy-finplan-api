@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { AuthDTO } from "./dtos/auth.dto";
-import { UsersModel } from "../../models";
-import { User } from "../../types/User";
+import { UsersModel } from "../../../models";
+import { User } from "../../../types/User";
 
 export async function authenticate(req: Request, res: Response) {
   try {
