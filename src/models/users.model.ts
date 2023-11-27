@@ -1,21 +1,38 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../database/connectDB';
+import { User } from '../types/User';
 
-const UserModel = sequelize.define('User', {
+class UsersModel extends Model<User> implements User {
+  public id!: number;
+  public username?: string | undefined;
+  public email!: string;
+  public password!: string;
+};
+
+const { STRING, INTEGER } = DataTypes;
+
+UsersModel.init({
+  id: {
+    type: INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
   username: {
-    type: DataTypes.STRING,
+    type: STRING,
   },
   email: {
-    type: DataTypes.STRING,
+    type: STRING,
     allowNull: false,
     unique: true,
   },
   password: {
-    type: DataTypes.STRING,
+    type: STRING,
     allowNull: false,
   }
 }, {
-  timestamps: true,
-});
+  sequelize,
+  modelName: 'users',
+  tableName: 'users',
+})
 
-export default UserModel;
+export default UsersModel;

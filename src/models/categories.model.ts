@@ -3,8 +3,8 @@ import { sequelize } from '../database/connectDB';
 import { Category } from '../types/Category';
 
 class CategoriesModel extends Model<Category> implements Category {
-  id!: number;
-  name!: string;
+  public id!: number;
+  public name!: string;
 }
 
 const { INTEGER, STRING } = DataTypes;
