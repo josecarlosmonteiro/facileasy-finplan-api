@@ -3,9 +3,9 @@ import { sequelize } from '../database/connectDB';
 import { VariableRelease } from '../types/Release';
 
 class VariableReleasesModel extends Model<VariableRelease> implements VariableRelease {
-  id!: number;
-  month!: string;
-  year!: number;
+  public id!: number;
+  public month!: string;
+  public year!: number;
 }
 
 const { STRING, INTEGER } = DataTypes;

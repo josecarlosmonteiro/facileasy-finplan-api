@@ -5,9 +5,10 @@ import { Category } from '../types/Category';
 class CategoriesModel extends Model<Category> implements Category {
   public id!: number;
   public name!: string;
+  public type!: 'in' | 'out';
 }
 
-const { INTEGER, STRING } = DataTypes;
+const { INTEGER, STRING, ENUM } = DataTypes;
 
 CategoriesModel.init({
   id: {
@@ -17,6 +18,11 @@ CategoriesModel.init({
   },
   name: {
     type: STRING,
+    allowNull: false,
+  },
+  type: {
+    type: ENUM,
+    values: ['in', 'out'],
     allowNull: false,
   }
 }, {

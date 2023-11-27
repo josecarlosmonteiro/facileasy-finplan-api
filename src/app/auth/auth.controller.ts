@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { AuthDTO } from "./dtos/auth.dto";
-import { UserModel } from "../../models";
+import { UsersModel } from "../../models";
 import { User } from "../../types/User";
 
 export async function authenticate(req: Request, res: Response) {
   try {
     const { email, password }: AuthDTO = req.body;
 
-    const user = await UserModel.findOne({ where: { email } }) as unknown as User;
+    const user = await UsersModel.findOne({ where: { email } }) as unknown as User;
 
     if (!user) throw Error("Usuário não encontrado");
     if (user.password !== password) throw Error("Senha incorreta");
