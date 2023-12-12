@@ -8,7 +8,7 @@ class FixedReleasesModel extends Model<Release> implements Release {
   public value!: number;
   public type!: 'in' | 'out';
   public payday?: Date | undefined;
-  public status!: 'pago' | 'pendente' | 'cancelado';
+  public transferType?: string | undefined;
 }
 
 const { INTEGER, STRING, FLOAT, ENUM, DATE } = DataTypes;
@@ -27,18 +27,17 @@ FixedReleasesModel.init({
     type: FLOAT,
     allowNull: false,
   },
+  payday: {
+    type: DATE,
+  },
   type: {
     type: ENUM,
     values: ['in', 'out'],
     allowNull: false,
   },
-  payday: {
-    type: DATE,
-  },
-  status: {
-    type: ENUM,
-    values: ['pago', 'pendente', 'cancelado'],
-  },
+  transferType: {
+    type: STRING,
+  }
 }, {
   sequelize,
   modelName: 'FixedReleases',

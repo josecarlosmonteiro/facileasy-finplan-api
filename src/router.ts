@@ -4,7 +4,6 @@ import authRouter from "./app/users/auth/auth.router";
 import registrationRouter from "./app/users/registration/registration.router";
 import categoriesRouter from "./app/categories/categories.router";
 
-
 const router = express.Router();
 
 router.get('/', (_req, res) => {
